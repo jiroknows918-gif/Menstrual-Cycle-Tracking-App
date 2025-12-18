@@ -1,0 +1,12 @@
+Sundin ang mga commands na ito:
+
+1. Kopyahin ang repository URL mo mula sa GitHub page
+   (Halimbawa: https://github.com/username/Menstrual-Cycle-Tracking-App.git)
+
+2. I-run ang commands na ito sa terminal:
+
+git remote add origin https://github.com/username/Menstrual-Cycle-Tracking-App.git
+git push -u origin main
+
+(Palitan ang URL ng actual na repository URL mo)
+
