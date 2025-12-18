@@ -1,0 +1,1711 @@
+/* Global styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    background: #fdf9fb;
+    color: #333;
+    line-height: 1.5;
+}
+
+* {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    background: linear-gradient(135deg, #ffe4ec, #f3e8ff);
+}
+
+.sidebar {
+    width: 260px;
+    background: #ffffffcc;
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 182, 193, 0.4);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.logo-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9aaf, #ffb3c6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.sidebar-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #c2185b;
+}
+
+.sidebar-subtitle {
+    font-size: 12px;
+    color: #777;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: auto;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    color: #555;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.nav-item a.active,
+.nav-item a:hover {
+    background: #ffe4ec;
+    color: #c2185b;
+    transform: translateY(-1px);
+}
+
+.nav-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: #f8bbd0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.sidebar-footer {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #777;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+}
+
+.main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 182, 193, 0.85) 0%, 
+            rgba(255, 192, 203, 0.8) 25%, 
+            rgba(255, 228, 236, 0.75) 50%, 
+            rgba(248, 187, 208, 0.8) 75%, 
+            rgba(244, 143, 177, 0.85) 100%);
+    background-size: 400% 400%;
+    animation: menstrualFlow 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+.main::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80px 80px at 15% 20%, rgba(239, 83, 80, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 60px 60px at 85% 75%, rgba(239, 83, 80, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 100px 100px at 50% 50%, rgba(244, 143, 177, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40px 40px at 25% 80%, rgba(194, 24, 91, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50px 50px at 75% 30%, rgba(233, 30, 99, 0.12) 0%, transparent 70%);
+    animation: floatingDrops 12s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes menstrualFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 50% 100%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+}
+
+@keyframes floatingDrops {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(15px) scale(1.1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-10px) scale(0.95);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translateY(8px) scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+/* Floating Hearts */
+.main .floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main .floating-hearts .heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.6;
+    animation: pulseHeart 1.5s ease-in-out infinite;
+}
+
+.main .floating-hearts .heart:nth-child(1) { left: 10%; top: 15%; animation-delay: 0s; font-size: 18px; }
+.main .floating-hearts .heart:nth-child(2) { left: 25%; top: 45%; animation-delay: 0.2s; font-size: 24px; }
+.main .floating-hearts .heart:nth-child(3) { left: 40%; top: 70%; animation-delay: 0.4s; font-size: 16px; }
+.main .floating-hearts .heart:nth-child(4) { left: 55%; top: 25%; animation-delay: 0.3s; font-size: 22px; }
+.main .floating-hearts .heart:nth-child(5) { left: 70%; top: 55%; animation-delay: 0.5s; font-size: 20px; }
+.main .floating-hearts .heart:nth-child(6) { left: 85%; top: 80%; animation-delay: 0.1s; font-size: 26px; }
+.main .floating-hearts .heart:nth-child(7) { left: 15%; top: 60%; animation-delay: 0.6s; font-size: 14px; }
+.main .floating-hearts .heart:nth-child(8) { left: 60%; top: 85%; animation-delay: 0.35s; font-size: 28px; }
+.main .floating-hearts .heart:nth-child(9) { left: 35%; top: 35%; animation-delay: 0.45s; font-size: 18px; }
+.main .floating-hearts .heart:nth-child(10) { left: 80%; top: 10%; animation-delay: 0.25s; font-size: 22px; }
+
+@keyframes pulseHeart {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.9;
+    }
+}
+
+/* Floating Flowers */
+.main .floating-flowers {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main .floating-flowers .flower {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0.5;
+    animation: pulseFlower 2s ease-in-out infinite;
+}
+
+.main .floating-flowers .flower:nth-child(1) { left: 5%; top: 20%; animation-delay: 0s; font-size: 20px; }
+.main .floating-flowers .flower:nth-child(2) { left: 20%; top: 50%; animation-delay: 0.3s; font-size: 26px; }
+.main .floating-flowers .flower:nth-child(3) { left: 45%; top: 75%; animation-delay: 0.5s; font-size: 18px; }
+.main .floating-flowers .flower:nth-child(4) { left: 65%; top: 30%; animation-delay: 0.2s; font-size: 24px; }
+.main .floating-flowers .flower:nth-child(5) { left: 78%; top: 60%; animation-delay: 0.4s; font-size: 22px; }
+.main .floating-flowers .flower:nth-child(6) { left: 90%; top: 15%; animation-delay: 0.6s; font-size: 20px; }
+.main .floating-flowers .flower:nth-child(7) { left: 30%; top: 90%; animation-delay: 0.15s; font-size: 16px; }
+.main .floating-flowers .flower:nth-child(8) { left: 52%; top: 40%; animation-delay: 0.35s; font-size: 28px; }
+
+@keyframes pulseFlower {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.25) rotate(15deg);
+        opacity: 0.85;
+    }
+}
+
+/* Floating Pads */
+.main .floating-pads {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main .floating-pads .pad {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0.5;
+    animation: pulsePad 1.8s ease-in-out infinite;
+}
+
+.main .floating-pads .pad:nth-child(1) { left: 12%; top: 25%; animation-delay: 0s; font-size: 16px; }
+.main .floating-pads .pad:nth-child(2) { left: 38%; top: 55%; animation-delay: 0.25s; font-size: 20px; }
+.main .floating-pads .pad:nth-child(3) { left: 58%; top: 80%; animation-delay: 0.5s; font-size: 14px; }
+.main .floating-pads .pad:nth-child(4) { left: 75%; top: 40%; animation-delay: 0.15s; font-size: 18px; }
+.main .floating-pads .pad:nth-child(5) { left: 28%; top: 70%; animation-delay: 0.4s; font-size: 16px; }
+.main .floating-pads .pad:nth-child(6) { left: 88%; top: 50%; animation-delay: 0.3s; font-size: 22px; }
+
+@keyframes pulsePad {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.35);
+        opacity: 0.85;
+    }
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #c2185b;
+}
+
+.badge-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #fff7fb;
+    border: 1px solid #ffccde;
+    font-size: 11px;
+    color: #c2185b;
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f48fb1, #ce93d8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.btn-outline {
+    border: none;
+    background: #ffe4ec;
+    color: #c2185b;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-outline:hover {
+    background: #ffc1d9;
+    transform: translateY(-1px);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+/* Main dashboard sections (Dashboard, Calendar, Insights, History) */
+.main-section {
+    display: none;
+}
+
+.main-section.active {
+    display: grid;
+}
+
+.card {
+    background: #ffffffee;
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 18px 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+#overview-section {
+    padding-bottom: 18px;
+}
+
+/* Cycle overview layout refinements */
+#overview-section .card-header {
+    align-items: center;
+}
+
+#overview-section .card-title {
+    font-size: 18px;
+}
+
+#overview-section .chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #fff;
+    border: 1px solid #f8bbd0;
+}
+
+#overview-section .stats-row {
+    margin-top: 12px;
+    margin-bottom: 16px;
+    gap: 14px;
+}
+
+#overview-section .stat-pill {
+    padding: 14px 16px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+
+#overview-section .stat-label {
+    font-size: 12px;
+}
+
+#overview-section .stat-value {
+    font-size: 18px;
+}
+
+#overview-section .pill-subtext {
+    font-size: 12px;
+}
+
+#overview-section .cycle-phases-legend-horizontal {
+    margin-top: 10px;
+}
+
+#overview-section .phase-card {
+    min-height: 220px;
+}
+
+#history-section {
+    grid-template-columns: 1fr;
+}
+
+#history-section .card {
+    min-height: calc(100vh - 150px);
+    width: 100%;
+}
+
+#update-cycle-section {
+    grid-template-columns: 1fr;
+}
+
+#update-cycle-section .card {
+    min-height: calc(100vh - 150px);
+    width: 100%;
+}
+
+/* Update cycle info – enhanced design */
+.update-cycle-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe4ec, #ffffff);
+    border: 1px solid #f8bbd0;
+}
+
+.update-cycle-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(244, 143, 177, 0.4), transparent 70%);
+    opacity: 0.7;
+}
+
+.update-cycle-card .card-header {
+    margin-bottom: 14px;
+}
+
+#update-cycle-section .card-title {
+    font-size: 18px;
+}
+
+.update-cycle-summary {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.update-summary-item {
+    background: #fff;
+    border-radius: 14px;
+    padding: 8px 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid #f06292;
+}
+
+.update-summary-label {
+    font-size: 11px;
+    color: #777;
+}
+
+.update-summary-value {
+    font-size: 14px;
+    color: #c2185b;
+}
+
+#period-tracer-section {
+    grid-template-columns: 1fr;
+}
+
+.period-tracer-card {
+    min-height: calc(100vh - 150px);
+}
+
+.period-tracer-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1.1fr;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.period-tracer-summary {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 12px;
+}
+
+.tracer-pill {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tracer-pill-main {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #f06292, #ba68c8);
+    color: #fff;
+}
+
+.countdown-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    border: 1px solid #f8bbd0;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.countdown-header {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 10px;
+    text-align: center;
+    letter-spacing: 0.06em;
+    font-size: 12px;
+}
+
+.countdown-number {
+    font-size: 42px;
+    font-weight: 800;
+    color: #c2185b;
+    text-align: center;
+    line-height: 1;
+}
+
+.countdown-subtext {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+
+.countdown-side {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    align-content: start;
+}
+
+.mini-day-card {
+    background: #fff;
+    border: 1px solid #f8bbd0;
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+.mini-day-number {
+    font-size: 16px;
+    font-weight: 800;
+    color: #c2185b;
+    line-height: 1.1;
+}
+
+.mini-day-label {
+    font-size: 11px;
+    color: #888;
+}
+
+.mini-day-empty {
+    grid-column: span 2;
+    background: #fffafa;
+    border: 1px dashed #f8bbd0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+}
+
+.tracer-label {
+    font-size: 12px;
+    color: #777;
+}
+
+.tracer-pill-main .tracer-label {
+    color: #ffe4f1;
+}
+
+.tracer-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #c2185b;
+}
+
+.tracer-pill-main .tracer-value {
+    color: #ffffff;
+}
+
+.tracer-subtext {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 2px;
+}
+
+.tracer-pill-delayed {
+    border: 2px solid #f44336;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    animation: pulse-delayed 2s ease-in-out infinite;
+}
+
+@keyframes pulse-delayed {
+    0%, 100% {
+        box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+    }
+}
+
+.period-tracer-form-wrapper {
+    background: #fffafa;
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.period-tracer-form .form-group label {
+    font-size: 14px;
+}
+
+.period-tracer-form .form-control {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.form-helper-text {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #777;
+}
+
+@media (max-width: 900px) {
+    .period-tracer-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .period-tracer-card {
+        min-height: auto;
+    }
+}
+
+#update-cycle-section .form-group label {
+    font-size: 14px;
+}
+
+#update-cycle-section .form-control {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+#update-cycle-section .btn-primary.btn-sm {
+    font-size: 14px;
+    padding: 8px 18px;
+}
+
+/* Cycle Chart Styles */
+.cycle-chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.cycle-chart {
+    width: 320px;
+    height: 320px;
+    flex-shrink: 0;
+}
+
+.cycle-chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.legend-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.legend-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.legend-card.menstruation {
+    border-left: 4px solid #ef5350;
+}
+
+.legend-card.proliferative {
+    border-left: 4px solid #a1887f;
+}
+
+.legend-card.ovulation {
+    border-left: 4px solid #4caf50;
+}
+
+.legend-card.secretory {
+    border-left: 4px solid #ffc107;
+}
+
+.legend-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.legend-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.legend-content strong {
+    font-size: 14px;
+    color: #333;
+}
+
+.legend-content span {
+    font-size: 12px;
+    color: #888;
+    font-weight: normal;
+}
+
+.legend-content p {
+    font-size: 12px;
+    color: #666;
+    margin: 4px 0 0 0;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .cycle-chart {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .cycle-chart-legend {
+        min-width: 100%;
+    }
+}
+
+/* Detailed 30-Day Cycle Wheel */
+.detailed-cycle-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.detailed-cycle-wheel {
+    width: 350px;
+    height: 350px;
+    flex-shrink: 0;
+}
+
+.cycle-phases-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+}
+
+.cycle-phases-legend-horizontal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 1100px) {
+    .cycle-phases-legend-horizontal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cycle-phases-legend-horizontal {
+        grid-template-columns: 1fr;
+    }
+}
+
+.phase-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.phase-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.phase-card.menstruation-card {
+    border-left: 5px solid #ef5350;
+    background: linear-gradient(90deg, #fff5f5 0%, #fff 100%);
+}
+
+.phase-card.follicular-card {
+    border-left: 5px solid #64b5f6;
+    background: linear-gradient(90deg, #f0f7ff 0%, #fff 100%);
+}
+
+.phase-card.ovulation-card {
+    border-left: 5px solid #66bb6a;
+    background: linear-gradient(90deg, #f0fff0 0%, #fff 100%);
+}
+
+.phase-card.luteal-card {
+    border-left: 5px solid #ffca28;
+    background: linear-gradient(90deg, #fffef0 0%, #fff 100%);
+}
+
+.phase-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.phase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.phase-info strong {
+    font-size: 15px;
+    color: #333;
+}
+
+.phase-days {
+    font-size: 12px;
+    color: #888;
+    font-weight: normal;
+}
+
+.phase-info p {
+    font-size: 12px;
+    color: #555;
+    margin: 4px 0 0 0;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .detailed-cycle-wheel {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .detailed-cycle-wheel {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .cycle-phases-legend {
+        min-width: 100%;
+    }
+}
+
+#symptoms-section {
+    grid-template-columns: 1fr;
+}
+
+#symptoms-section .card {
+    width: 100%;
+    max-width: 100%;
+    min-height: 520px;
+}
+
+/* Symptoms & mood tracker enhanced layout */
+.symptoms-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.symptoms-card .card-header {
+    margin-bottom: 4px;
+}
+
+.symptoms-card .card-title {
+    font-size: 18px;
+}
+
+.symptoms-card .chip {
+    background: #ffe4ec;
+    color: #b0003a;
+    font-size: 12px;
+}
+
+.symptoms-layout {
+    display: grid;
+    grid-template-columns: 1.7fr 1.3fr;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.symptoms-form-panel {
+    background: #fffafa;
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.symptoms-form-heading {
+    margin-bottom: 8px;
+}
+
+.symptoms-form-title {
+    font-size: 15px;
+    color: #b0003a;
+    margin-bottom: 2px;
+}
+
+.symptoms-form-subtitle {
+    font-size: 12px;
+    color: #777;
+}
+
+.symptoms-form-subtitle strong {
+    color: #b0003a;
+}
+
+.symptoms-insights-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.symptom-mini-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-size: 12px;
+}
+
+.symptom-mini-card .mini-card-title {
+    font-size: 13px;
+    color: #b0003a;
+    margin-bottom: 4px;
+}
+
+.symptom-mini-card p,
+.symptom-mini-card ul {
+    font-size: 11.5px;
+    color: #555;
+    margin: 2px 0 0 0;
+    font-weight: normal;
+}
+
+.symptom-mini-card ul {
+    padding-left: 16px;
+}
+
+.mood-scale-row {
+    display: flex;
+    gap: 6px;
+    margin: 4px 0 2px;
+    font-size: 18px;
+}
+
+@media (max-width: 900px) {
+    .symptoms-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+#calendar-section {
+    grid-template-columns: 1fr;
+}
+
+#calendar-section .card {
+    width: 100%;
+    max-width: 100%;
+    background: linear-gradient(135deg, #ffe4ec, #ffffff);
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+    border: 1px solid #f8bbd0;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #b0003a;
+}
+
+.chip {
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: #fff7fb;
+}
+
+.stats-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.charts-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.chart-card {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 11px;
+    color: #777;
+}
+
+.chart-main-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #b0003a;
+}
+
+.chart-subtext {
+    font-size: 11px;
+}
+
+.stat-pill {
+    flex: 1;
+    border-radius: 16px;
+    padding: 10px 12px;
+    background: #fff7fb;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #777;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.pill-red {
+    border-left: 4px solid #e57373;
+}
+.pill-green {
+    border-left: 4px solid #81c784;
+}
+.pill-yellow {
+    border-left: 4px solid #ffd54f;
+}
+
+.circle-chart {
+    width: 54px;
+    height: 54px;
+}
+
+.circle-chart__background {
+    fill: none;
+    stroke: #fde4ef;
+    stroke-width: 7;
+}
+
+.circle-chart__circle {
+    fill: none;
+    stroke: #f06292;
+    stroke-width: 7;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.circle-chart__info {
+    font-size: 11px;
+    text-anchor: middle;
+    fill: #b0003a;
+}
+
+.cycle-wheel {
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.cycle-wheel-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 11px;
+}
+
+.cycle-wheel-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cycle-wheel-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+}
+
+.phase-menstruation { background: #ef5350; }
+.phase-follicular { background: #42a5f5; }
+.phase-ovulation { background: #ffca28; }
+.phase-luteal { background: #ab47bc; }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(46px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 14px;
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-weight: 700;
+    color: #c2185b;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 6px 0;
+}
+
+.calendar-cell {
+    position: relative;
+    height: 60px;
+    border-radius: 14px;
+    background: #fff7fb;
+    border: 1px solid #f8bbd0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s, background 0.15s, border-color 0.15s;
+    color: #b0003a;
+}
+
+.calendar-cell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    background: #ffe4ec;
+}
+
+.calendar-cell span {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.cell-period {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-color: #ef9a9a;
+}
+
+.cell-period span {
+    color: #d32f2f;
+}
+
+.cell-fertile {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-color: #a5d6a7;
+}
+
+.cell-ovulation {
+    background: linear-gradient(135deg, #fff59d 0%, #ffeb3b 100%);
+    border-color: #ffd54f;
+}
+
+.cell-ovulation span {
+    color: #f57f17;
+    background: #ffeb3b;
+    padding: 2px 6px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.calendar-today {
+    border: 2px solid #e91e63;
+    box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.25);
+    background: #ffffff;
+}
+
+.calendar-icon {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.calendar-icon-yellow-blood {
+    font-size: 18px;
+    filter: hue-rotate(45deg) saturate(1.5) brightness(1.2) drop-shadow(0 0 2px rgba(255, 235, 59, 0.8));
+}
+
+/* Selected day from calendar */
+.calendar-cell.cell-selected {
+    background: linear-gradient(135deg, #f06292, #ba68c8);
+    border-color: #f06292;
+    color: #ffffff;
+}
+
+.calendar-cell.cell-selected span {
+    color: #ffffff;
+}
+
+.legend {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffffaa;
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+}
+
+.legend-red { background: #e57373; }
+.legend-green { background: #81c784; }
+.legend-yellow { background: #ffd54f; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.form-group label {
+    color: #555;
+}
+
+.form-control,
+.form-select,
+.form-textarea {
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    padding: 6px 10px;
+    font-size: 12px;
+    outline: none;
+    background: #fff;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-textarea {
+    border-radius: 14px;
+    min-height: 60px;
+    resize: vertical;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #f06292;
+    box-shadow: 0 0 0 2px rgba(240, 98, 146, 0.2);
+}
+
+.btn-primary {
+    border: none;
+    background: linear-gradient(135deg, #f06292, #ba68c8);
+    color: #fff;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 8px 20px rgba(244, 143, 177, 0.5);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(244, 143, 177, 0.6);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.chip-toggle {
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: 11px;
+    border: 1px solid #f8bbd0;
+    background: #fff;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.chip-toggle.active {
+    background: #f06292;
+    color: #fff;
+    border-color: #f06292;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.history-table th,
+.history-table td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #f0e0ea;
+}
+
+.history-table th {
+    text-align: left;
+    color: #777;
+    font-weight: 500;
+}
+
+/* Period history table - premium design */
+.period-history-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 12px;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(244, 143, 177, 0.35);
+}
+
+.period-history-table thead th {
+    background: linear-gradient(135deg, #f06292, #ba68c8);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+    text-align: center;
+    padding: 12px 18px;
+    border-bottom: none;
+}
+
+.period-history-table tbody tr {
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.period-history-table tbody tr:nth-child(odd) td {
+    background: #fff7fb;
+}
+
+.period-history-table tbody tr:nth-child(even) td {
+    background: #ffffff;
+}
+
+.period-history-table tbody tr:hover td {
+    background: #ffe0ef;
+    box-shadow: 0 4px 12px rgba(244, 143, 177, 0.42);
+    transform: translateY(-2px);
+}
+
+.period-history-table tbody td {
+    border-bottom: 1px solid #fde2ef;
+    font-size: 13px;
+    text-align: center;
+    padding: 11px 16px;
+}
+
+.period-history-table tbody td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: #c2185b;
+    white-space: nowrap;
+}
+
+.period-history-table tbody td:nth-child(2),
+.period-history-table tbody td:nth-child(3) {
+    font-weight: 600;
+    color: #ad1457;
+}
+
+@media (max-width: 700px) {
+    .period-history-table,
+    .period-history-table thead,
+    .period-history-table tbody,
+    .period-history-table th,
+    .period-history-table td,
+    .period-history-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .period-history-table thead {
+        display: none;
+    }
+
+    .period-history-table tbody tr {
+        margin-bottom: 10px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 16px rgba(244, 143, 177, 0.35);
+    }
+
+    .period-history-table tbody td {
+        text-align: left;
+        padding: 10px 14px;
+        position: relative;
+        border-bottom: 1px solid #fde2ef;
+    }
+
+    .period-history-table tbody td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #999;
+        margin-bottom: 2px;
+    }
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+}
+
+.tag-soft {
+    background: #fff7fb;
+    color: #c2185b;
+}
+
+.tag-alert {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.tag-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.pill-subtext {
+    font-size: 11px;
+    color: #777;
+}
+
+.tooltip {
+    position: fixed;
+    background: #333;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s, transform 0.15s;
+    z-index: 999;
+}
+
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Auth pages */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #ffe4ec 0, #fdf9fb 45%, #f3e8ff 100%);
+    padding: 16px;
+}
+
+.auth-card {
+    max-width: 420px;
+    width: 100%;
+    background: #ffffffee;
+    backdrop-filter: blur(10px);
+    padding: 24px 22px;
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+}
+
+.auth-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #c2185b;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 16px;
+}
+
+.auth-switch {
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+    color: #777;
+}
+
+.auth-switch a {
+    color: #c2185b;
+    font-weight: 600;
+}
+
+.alert {
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.alert-error {
+    background: #ffebee;
+    color: #b71c1c;
+    border: 1px solid #ffcdd2;
+}
+
+.alert-success {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c8e6c9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        margin-bottom: 0;
+        overflow-x: auto;
+    }
+
+    .main {
+        padding: 16px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .top-title {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 14px 12px;
+    }
+}
+
+
